@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+
+{% extends "post/post_base.html" %}
+{% load bootstrap5 %}
+
+{% block post_content %}
+
+  <h4>Dodaj nowy post!</h4>
+  <form action="{% url 'post:create' %}" method="POST" id='postForm'>
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input class="btn btn-primary btn-large" type="submit" value="Dodaj">
+  </form>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% extends "blog_app/base.html" %}
+
+{% block body_block %}
+
+  <h3>Nowy komentarz</h3>
+  <form class="post-form" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default" name="button">Umieść komentarz</button>
+  </form>
+
+  <script type="text/javascript">
+    var editor = new MediumEditor('.editable');
+  </script>
+
+{% endblock %}

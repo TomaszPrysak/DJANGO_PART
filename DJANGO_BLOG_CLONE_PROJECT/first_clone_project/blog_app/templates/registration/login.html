@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+{% extends "blog_app/base.html" %}
+
+{% block body_block %}
+
+  <div class="jumbotron">
+    <h3>Zaloguj się:</h3>
+    <h4>(Musisz być użytkownikiem o statusie "SuperUser".<br>
+      Sprawdź w panelu administratora czy takim użytkownikiem jesteś)</h4>
+    {% if form.errors %}
+      <p>Nazwa użytkownika oraz hasło nie pasują! Spróbuj jeszcze raz.</p>
+    {% endif %}
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" class='btn btn-primary' value="Login">
+      <input type="hidden" name="next" value="{{next}}">
+    </form>
+  </div>
+
+{% endblock %}

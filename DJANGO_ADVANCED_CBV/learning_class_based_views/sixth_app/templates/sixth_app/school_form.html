@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+{% extends "sixth_app/base.html" %}
+
+{% block body_block %}
+  <h3>
+    {% if not form.instance.pk %}
+      Create School
+    {% else %}
+      Update School
+    {% endif %}
+  </h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="btn btn-primary" name="" value="Ok">
+  </form>
+{% endblock %}

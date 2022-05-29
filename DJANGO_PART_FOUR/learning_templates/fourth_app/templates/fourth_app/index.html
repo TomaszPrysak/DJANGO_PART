@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends "fourth_app/base.html" %}
+  {% block body_block %}
+    <!-- Filtry wyjaśnione w pliky templatetags/fourth_app_extras.py -->
+    {% load fourth_app_extras %}
+    <h3>Witaj na stronie INDEX</h3>
+    <h4>To jest strona index.html</h4>
+    <p></p>
+    <h5>{{ text|upper }}</h5>
+    <h5>{{ number|add:"69" }}</h5>
+    <h5>{{ text|cutas:"hello" }}</h5>
+  {% endblock %}

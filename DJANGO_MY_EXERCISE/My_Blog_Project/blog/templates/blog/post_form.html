@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+{% extends "blog/base.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block page_block %}
+
+  {% include 'blog/_navi.html' %}
+
+  <div class="post card">
+    <div class="card-body">
+
+      <div class="card-body">
+        <h5>Dodając nowy post pamiętaj o następującej hierarchii kategorii i podkategorii postów!</h5>
+        {% for key, value in navbarDict.items %}
+
+          <div class="hierarchia_kategorii">
+            <ul>
+            {% if value|length > 0 %}
+              <li>{{ key.0 }}
+                <ul>
+                {% for item in value %}
+                  <li>{{ item.0 }}</li>
+                {% endfor %}
+              </ul>
+              </li>
+            {% else %}
+              <li>{{ key.0 }}</li>
+            {% endif %}
+          </ul>
+          </div>
+
+        {% endfor %}
+
+      </div>
+
+      <div class="card-body">
+        <h5>Dodaj nowy post</h5>
+        <form method="POST" class='form'>
+          {% csrf_token %}
+          {% bootstrap_form form %}
+          <input class="btn btn-success" type="submit" value="Dodaj nowy post">
+          <a href="{% url 'blog:all_post_list' %}">
+            <button type="button" class="btn btn-secondary">Anuluj</button>
+          </a>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  {% include 'blog/_footer.html' %}
+
+{% endblock %}

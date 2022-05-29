@@ -1,0 +1,19 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">Wypożyczalnia Video - Admin</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
+
+<!-- Aby edytować wygląd paneu użytkownika musimy stworzyć katalog projekt/templates/admin -->
+<!-- Następnie w nim umiesimy umieszczamy szablon panelu użytkownika (admin) z naszymi poprawkami.  -->
+<!-- Jednak nie robimy tego na jakkolwiek nazwanym szablonie oraz zawierający jakikolwiek kod. -->
+<!-- Tworzymy oryginalnie nazywający się szablon z oryginalnym kodem szablonu html strony admina. -->
+<!-- A więc jak stworzymy szablon nazwyający się jak szablon panelu administracyjnego oraz zawierający kod oryginalny z niewielką, naszą zmianą. To ten nasz szablon zastąpi szablon oryginalny -->
+<!-- Wszystkie oryginalne szablon z ich nazwami i kodem można znaleźć tutaj:
+https://github.com/django/django/tree/main/django/contrib/admin/templates/admin -->
+
+<!-- Oczywiście musimy podpiąć ścieżkę do szablonów w pliku settings.py -->

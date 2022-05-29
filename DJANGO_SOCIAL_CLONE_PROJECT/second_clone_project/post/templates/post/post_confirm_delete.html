@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+{% extends "post/post_base.html" %}
+
+{% block post_content %}
+  <h3>Jesteś pewny, że chcesz skasować ten post?</h3>
+
+  <div class="posts">
+
+    {% include 'post/_post.html' with post=object hide_delete=True %}
+
+  </div>
+
+  <form method="POST">
+      {% csrf_token %}
+      <input type="submit" value="Potwierdź usunięcie" class="btn btn-danger btn-large">
+      <a href="{% url 'post:single' username=user.username pk=object.pk %}" class="btn btn-simple btn-large btn-default">Anuluj</a>
+  </form>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+{% extends "blog/base.html" %}
+
+{% block page_block %}
+
+  {% include 'blog/_navi.html' %}
+
+  <div class="post card">
+    <div class="card-body">
+    <h5>{{ postDetailDict.title }}</h5>
+    {% if user.is_authenticated %}
+      <a href="{% url 'blog:post_remove' slug=postDetailDict.slug %}" title='delete' class="btn btn-simple">
+        <button type="button" class="btn btn-sm btn-danger">Skasuj post</button>
+      </a>
+    {% endif %}
+    <blockquote class="blockquote text-center">
+        <footer class="blockquote-footer">{{ postDetailDict.date|date:"d M Y" }} - {{ postDetailDict.date|time:"H:i" }}</footer>
+        <footer class="blockquote-footer"><a href='{% url 'blog:category_post_list' slug_category=postDetailDict.category.slug_category %}'>{{ postDetailDict.category }}</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'blog:category_remove' slug_category=postDetailDict.category.slug_category %}" title='delete' class="btn btn-simple">
+            <button type="button" class="btn btn-sm btn-danger">Skasuj kategorię</button>
+          </a>
+        {% endif %}
+        {% if postDetailDict.subcategory != None %}
+        - <a href='{% url 'blog:subcategory_post_list' slug_subcategory=postDetailDict.subcategory.slug_subcategory %}'>{{ postDetailDict.subcategory }}</a>
+        {% if user.is_authenticated %}
+          <a href="{% url 'blog:subcategory_remove' slug_subcategory=postDetailDict.subcategory.slug_subcategory %}" title='delete' class="btn btn-simple">
+            <button type="button" class="btn btn-sm btn-danger">Skasuj podkategorię</button>
+          </a>
+        {% endif %}
+        </footer>
+        {% endif %}
+    </blockquote>
+    <p class="text-right text-justify">{{ postDetailDict.text|safe }}</p>
+    </div>
+  </div>
+
+  {% include 'blog/_footer.html' %}
+
+{% endblock %}

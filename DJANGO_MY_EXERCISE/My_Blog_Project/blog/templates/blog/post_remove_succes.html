@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% extends "blog/base.html" %}
+
+{% block page_block %}
+
+  {% include 'blog/_navi.html' %}
+
+    <div class="post card">
+      <div class="card-body">
+
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">Usunięto post!</h4>
+          <p>Poprawnie usunięto post o tytule:</p>
+          <h5>{{ post_title }}</h5>
+        </div>
+
+        <a href="{% url 'blog:all_post_list' %}">
+          <button type="button" class="btn btn-success">OK</button>
+        </a>
+
+      </div>
+    </div>
+
+  {% include 'blog/_footer.html' %}
+
+{% endblock %}

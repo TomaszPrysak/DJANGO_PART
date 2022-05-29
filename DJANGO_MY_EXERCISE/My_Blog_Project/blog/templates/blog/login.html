@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+{% extends "blog/base.html" %}
+
+{% block page_block %}
+
+  {% include 'blog/_navi.html' %}
+
+  <div class="jumbotron">
+    <h4>Zaloguj się</h4>
+    <form action="{% url 'blog:user_login' %}" method="POST">
+      {% csrf_token %}
+      <label for="username">Nazwa użytkownika:</label>
+      <input type="text" name="username" placeholder="Wpisz nazwę użytkownika">
+      <label for="password">Hasło:</label>
+      <input type="password" name="password" placeholder="Wpisz hasło">
+      <input type="submit" name="" value="Zaloguj">
+    </form>
+  </div>
+
+  {% include 'blog/_footer.html' %}
+
+{% endblock %}

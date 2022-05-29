@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous">
+    <title></title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <ul class="nav navbar-nav">
+          <li class="nav-item"><a class="navbar-brand" href="{% url 'index' %}">HOME</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'fifth_app:register' %}">Register</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}">Admin</a></li>
+
+          <!-- Poniżej wyświetlamy dodatkowe przyciski w menu w zależności od tego czy użytkownik który
+          otworzył stronę jest zalogowanym, czy w międzyczasie się wylogował. -->
+          {% if user.is_authenticated %}
+            <li><a class="nav-link" href="{% url 'user_logut' %}">Logout</a></li>
+          {% else %}
+            <li><a class="nav-link" href="{% url 'fifth_app:user_login' %}">Login</a></li>
+          {% endif %}
+
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container">
+      {% block body_block %}
+      <!-- Wszystko poza tym blokiem będzie dziedziczone, jeżeli użyjemy tej konwencji w plikach html które mają dziedziczyć wspólną część z base.html -->
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

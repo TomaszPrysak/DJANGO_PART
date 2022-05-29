@@ -1,0 +1,43 @@
+<div class="card-header">
+
+  <ul class="nav nav-pills card-header-pills">
+
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'blog:all_post_list' %}">BLOG</a>
+    </li>
+
+    {% for key, value in navbarDict.items %}
+        {% if value|length > 0 %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href='{% url 'blog:category_post_list' slug_category=key.1 %}' role="button" aria-haspopup="true" aria-expanded="false">{{ key.0 }}</a>
+            <div class="dropdown-menu">
+             {% for item in value %}
+              <a class="dropdown-item" href="{% url 'blog:subcategory_post_list' slug_subcategory=item.1 %}">{{ item.0 }}</a>
+             {% endfor %}
+            </div>
+          </li>
+        {% else %}
+         <li class="nav-item">
+           <a class="nav-link" href='{% url 'blog:category_post_list' slug_category=key.1 %}'>{{ key.0 }}</a>
+         </li>
+       {% endif %}
+    {% endfor %}
+
+    {% if user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href='#' role="button" aria-haspopup="true" aria-expanded="false">{{ user }}</a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="{% url 'blog:new_category_form' %}">Dodaj kategorię główną</a>
+          <a class="dropdown-item" href="{% url 'blog:new_subcategory_form' %}">Dodaj podkategorię</a>
+          <a class="dropdown-item" href="{% url 'blog:new_post_form' %}">Dodaj post</a>
+          <a class="dropdown-item" href="{% url 'blog:user_logut' %}"><b>Wyloguj się</b></a>
+          <a class="dropdown-item" href="{% url 'admin:index' %}">Admin Site</a>
+        </div>
+      </li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link" href="{% url 'blog:user_login' %}">Zaloguj się</a></li>
+    {% endif %}
+
+  </ul>
+
+</div>

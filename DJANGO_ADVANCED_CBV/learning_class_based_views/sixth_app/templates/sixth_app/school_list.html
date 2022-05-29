@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+{% extends "sixth_app/base.html" %}
+
+{% block body_block %}
+  <h3>Witaj w liście wszystkich szkół w Szczekocinach</h3>
+  {% for school in schools %}
+    <h5>{{ school.id }}.
+      <a href="{{ school.id }}">{{ school.name }}</a>
+    </h5>
+  {% endfor %}
+  <!-- Poniższy kod jest zły ponieważ jak będziemy chcieli usunąć jakąś szkołę to podając w linku
+  delete/id to zapewne przepiszemy id z listy szkół wyświetlanych na ekranie.
+  Jednak numeracja szkół będzie błędna ponieważ znacnzik <ol> numeruje po koleje.
+  Natomiast jeżeli my wcześniej dodaliśmy jakąś szkołę a potem ją usunęliśmy i znowu dodaliśmy to w bazie danych aplikajci nowa szkoła będzie mieć kolejny z kolei numer ID.
+  Więc w tej liście musimy wyświetlić ID taki jaki jest w bazie danych a nie kolejny wg. znacznika <ol> -->
+  <!-- <ol>
+    {% for school in schools %}
+    <h5>
+      <li><a href="{{ school.id }}">{{ school.name }}</a></li>
+    </h5>
+    {% endfor %}
+  </ol> -->
+{% endblock %}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% extends "base.html" %}
+
+{% block body_block %}
+
+  <div class="container">
+
+    <div class="row">
+
+      {% block pregroup %}
+        <!-- tu będą wszczykiwane inne templatey -->
+      {% endblock %}
+
+      {% block group_content %}
+        <!-- tu będą wszczykiwane inne templatey -->
+      {% endblock %}
+
+      {% block postgroup %}
+        <!-- tu będą wszczykiwane inne templatey -->
+      {% endblock %}
+
+    </div>
+
+  </div>
+
+{% endblock %}

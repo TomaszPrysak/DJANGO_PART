@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+{% extends "fourth_app/base.html" %}
+  {% block body_block %}
+    <h3>Witaj na stronie RELATIVE URL TEMPLATES</h3>
+    <a href="{% url 'fourth_app:other' %}">THE OTHER PAGE</a>
+    <a href="{% url 'admin:index' %}">THE ADMIN PAGE</a>
+    <a href="{% url 'index' %}">THE INDEX PAGE</a>
+  {% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'exercise_app/exercise_app_style.css' %}">
+    <title>Hello in Users web</title>
+  </head>
+  <body>
+    <h3>Zobacz poniższą listę użytkowników.</h3>
+    <div>
+      {% if users %}
+        <ol>
+          {% for data in users %}
+            <li>User Info
+              <ul>
+                <li>Imię: {{ data.user_firstname }}</li>
+                <li>Nazwisko: {{ data.user_lastname }}</li>
+                <li>Email: {{ data.user_email }}</li>
+              </ul>
+            </li>
+        {% endfor %}
+        </ol>
+      {% else %}
+        <p>Brak użytkowników w bazie</p>
+      {% endif %}
+    </div>
+  </body>
+</html>

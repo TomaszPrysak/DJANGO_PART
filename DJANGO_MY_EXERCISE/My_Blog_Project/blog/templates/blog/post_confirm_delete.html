@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+{% extends "blog/base.html" %}
+
+{% block page_block %}
+
+  {% include 'blog/_navi.html' %}
+
+    <div class="post card">
+      <div class="card-body">
+
+        <div class="alert alert-warning" role="alert">
+          <h4 class="alert-heading">Ostrzeżenie usunięcia postu!</h4>
+          <p>Czy chcesz usunąć post o tytule:</p>
+          <h5>{{ post.title }}</h5>
+        </div>
+
+        <form method="POST">
+          {% csrf_token %}
+          <input type="submit" class="btn btn-danger" value="Usuń post" />
+          <a href="{% url 'blog:all_post_list' %}">
+            <button type="button" class="btn btn-secondary">Anuluj</button>
+          </a>
+        </form>
+
+
+      </div>
+    </div>
+
+  {% include 'blog/_footer.html' %}
+
+{% endblock %}

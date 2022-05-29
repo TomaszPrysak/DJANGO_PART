@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+{% extends "sixth_app/base.html" %}
+
+{% block body_block %}
+  <div class="jumbotron">
+    <h3>Witaj w informacjach na temat danej szkoły</h3>
+    <h5>Informacje o:</h5>
+    <p>Szkoła: <mark>{{ school_detail.name }}</mark></p>
+    <p>Dyrektor: <mark>{{ school_detail.principal }}</mark></p>
+    <p>Adres: <mark>{{ school_detail.location }}</mark></p>
+    <br>
+    <h5>Uczniowie tej szkoły:</h5>
+    {% for student in school_detail.students.all %}
+      <p>{{ student.name }} ma {{ student.age }} lat.</p>
+    {% endfor %}
+  </div>
+  <div class="jumbotron">
+    <p><a class="btn btn-warning" href="{% url 'sixth_app:update' pk=school_detail.pk %}">Update</a></p>
+  </div>
+{% endblock %}
